@@ -10,12 +10,32 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+// should translate a simple word
+// should translate a complex word
+// should attach "yay" if word begins with vowel
+// should lowercase and trim word before translation
+const vowels = ['a', 'e', 'i', 'o', 'u']
+let letterPosition = 0
 
 const pigLatin = (word) => {
-
-  // Your code here
-
+  word = word.toLowerCase().trim();
+  let firstLetter = word[0]
+  if (vowels.includes(firstLetter)) {
+    return word + 'yay'
+  }
+  for (let i = 0; i < word.length; i++) {
+    if (vowels.includes(word[i])) {
+      letterPosition = i
+      break;
+    }
+  } 
+  return word.slice(letterPosition) + word.slice(0, letterPosition) + 'ay';
 }
+// const str = 'The quick brown fox jumps over the lazy dog.';
+// console.log(str.slice(4, 19));
+// Expected output: "quick brown fox
+
+
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
